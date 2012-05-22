@@ -17,7 +17,7 @@ class ReviewedItemForm(ModelForm):
         (5, 5),
     )
     score = forms.ChoiceField(label=_('Rating'), required=True, 
-        choices=SCORE_CHOICES, widget=forms.RadioSelect(attrs={'class': 'star'}), 
+        choices=SCORE_CHOICES, widget=forms.Select(attrs={'class': 'star'}), 
         error_messages={
             'required': _("Please choose a rating for this item."),
             'invalid_choice': _("Please choose a rating for this item.")
