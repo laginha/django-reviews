@@ -23,10 +23,10 @@ class Vote(models.Model):
     """
     like = models.BooleanField(default=True)
     user = models.ForeignKey(User, verbose_name=_('user'), 
-        related_name='votes', blank=True, null=True)
+        related_name='reviews_votes', blank=True, null=True)
     ip_address = models.IPAddressField(blank=True)
     review = models.ForeignKey('ReviewedItem', verbose_name=_('review'), 
-        related_name='votes')
+        related_name='reviews_votes')
     date_added = models.DateTimeField(_('date added'), 
         default=datetime.datetime.now, editable=False)
     date_changed = models.DateTimeField(_('date changed'), 
