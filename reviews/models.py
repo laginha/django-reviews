@@ -64,17 +64,32 @@ class ReviewedItem(models.Model):
     """
     A generic ReviewedItem of a Django Model.
     """
-    content_type = models.ForeignKey(ContentType, verbose_name=_('content type'), 
-        related_name="reviews")
-    object_id = models.PositiveIntegerField(_('object ID')) 
-    score = models.IntegerField(_('rating'))
-    content = models.TextField(_('review'))
-    user = models.ForeignKey(User, verbose_name=_('user'), 
-        related_name='reviews')
-    date_added = models.DateTimeField(_('date added'), 
-        default=datetime.datetime.now, editable=False)
-    date_changed = models.DateTimeField(_('date changed'), 
-        default=datetime.datetime.now, editable=False)
+    content_type = models.ForeignKey(
+        ContentType,
+        related_name = "reviews",
+        editable = False)
+
+    object_id = models.PositiveIntegerField(
+        editable = False)
+
+    score = models.IntegerField(
+        verbose_name = _('Rating'))
+
+    content = models.TextField(
+        verbose_name = _('Review'))
+
+    user = models.ForeignKey(
+        User,
+        related_name = 'reviews',
+        editable = False)
+
+    date_added = models.DateTimeField(
+        auto_now_add = True,
+        editable = False)
+
+    date_changed = models.DateTimeField(
+        auto_now = True,
+        editable = False)
     
     content_object = generic.GenericForeignKey()
     
@@ -95,5 +110,3 @@ class ReviewedItem(models.Model):
     def __unicode__(self):
         return u"Review of %s by %s" % (self.content_object, self.user.username)
 
-
-    
