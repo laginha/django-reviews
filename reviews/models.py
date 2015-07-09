@@ -2,7 +2,7 @@ import datetime
 
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-from django.contrib.auth.models import User
+from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -22,7 +22,7 @@ class Vote(models.Model):
     
     """
     like = models.BooleanField(default=True)
-    user = models.ForeignKey(User, verbose_name=_('user'), 
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'), 
         related_name='reviews_votes', blank=True, null=True)
     ip_address = models.IPAddressField(blank=True)
     review = models.ForeignKey('ReviewedItem', verbose_name=_('review'), 
@@ -79,7 +79,7 @@ class ReviewedItem(models.Model):
         verbose_name = _('Review'))
 
     user = models.ForeignKey(
-        User,
+        settings.AUTH_USER_MODEL,
         related_name = 'reviews',
         editable = False)
 
