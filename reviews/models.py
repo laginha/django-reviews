@@ -1,7 +1,7 @@
 import datetime
 
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes import fields
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -91,7 +91,7 @@ class ReviewedItem(models.Model):
         auto_now = True,
         editable = False)
     
-    content_object = generic.GenericForeignKey()
+    content_object = fields.GenericForeignKey()
     
     objects = ReviewedItemManager()
     
