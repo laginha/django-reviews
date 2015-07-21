@@ -24,7 +24,7 @@ class Vote(models.Model):
     like = models.BooleanField(default=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_('user'), 
         related_name='reviews_votes', blank=True, null=True)
-    ip_address = models.IPAddressField(blank=True)
+    ip_address = models.GenericIPAddressField(blank=True, null=True)
     review = models.ForeignKey('ReviewedItem', verbose_name=_('review'), 
         related_name='reviews_votes')
     date_added = models.DateTimeField(_('date added'), 
